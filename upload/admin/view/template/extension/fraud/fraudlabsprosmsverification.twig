@@ -1,0 +1,149 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-fraud" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid"> {% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+      </div>
+      <div class="panel-body">
+        <div class="alert alert-info"><i class="fa fa-exclamation-circle"></i> {{ text_signup }}</div>
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-fraud" class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+            <div class="col-sm-10">
+              <select name="fraud_fraudlabsprosmsverification_status" id="input-status" class="form-control">
+                {% if fraud_fraudlabsprosmsverification_status %}
+                  <option value="1" selected="selected">{{ text_enabled }}</option>
+                  <option value="0">{{ text_disabled }}</option>
+                {% else %}
+                  <option value="1">{{ text_enabled }}</option>
+                  <option value="0" selected="selected">{{ text_disabled }}</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-key"><span data-toggle="tooltip" title="{{ help_sms_key }}">{{ entry_key }}</span></label>
+            <div class="col-sm-10">
+              <input type="text" name="fraud_fraudlabsprosmsverification_key" value="{{ fraud_fraudlabsprosmsverification_key }}" placeholder="{{ entry_key }}" id="input-key" class="form-control" />
+              {% if error_key %}
+                <div class="text-danger">{{ error_key }}</div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-sms-instruction"><span data-toggle="tooltip" title="{{ help_sms_instruction }}">{{ entry_sms_instruction }}</span></label>
+            <div class="col-sm-10">
+              <textarea name="fraud_fraudlabsprosmsverification_sms_instruction" class="form-control" rows="4" cols="50">{{ fraud_fraudlabsprosmsverification_sms_instruction }}</textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-sms-template"><span data-toggle="tooltip" title="{{ help_sms_template }}">{{ entry_sms_template }}</span></label>
+            <div class="col-sm-10">
+              <input type="text" name="fraud_fraudlabsprosmsverification_sms_template" value="{{ fraud_fraudlabsprosmsverification_sms_template }}" placeholder="{{ entry_sms_template }}" id="input-sms-template" class="form-control" />
+              {% if error_sms_template %}
+                <div class="text-danger">{{ error_sms_template }}</div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-sms-email-subject"><span data-toggle="tooltip" title="{{ help_sms_email_subject }}">{{ entry_sms_email_subject }}</span></label>
+            <div class="col-sm-10">
+              <input type="text" name="fraud_fraudlabsprosmsverification_sms_email_subject" value="{{ fraud_fraudlabsprosmsverification_sms_email_subject }}" id="input-sms-email-subject" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-sms-email-content"><span data-toggle="tooltip" title="{{ help_sms_email_content }}">{{ entry_sms_email_content }}</span></label>
+            <div class="col-sm-10">
+              <input type="text" name="fraud_fraudlabsprosmsverification_sms_email_content" value="{{ fraud_fraudlabsprosmsverification_sms_email_content }}" id="input-sms-email-content" class="form-control" />
+              {% if error_sms_email_content %}
+                <div class="text-danger">{{ error_sms_email_content }}</div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-sms-otp-timeout"><span data-toggle="tooltip" title="{{ help_sms_otp_timeout }}">{{ entry_sms_otp_timeout }}</span></label>
+            <div class="col-sm-10">
+              <input type="text" name="fraud_fraudlabsprosmsverification_sms_otp_timeout" value="{{ fraud_fraudlabsprosmsverification_sms_otp_timeout }}" id="input-sms-otp-timeout" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-sms-tel-cc">{{ entry_sms_tel_cc }}</label>
+            <div class="col-sm-10">
+              <select name="fraud_fraudlabsprosmsverification_sms_tel_cc" id="input-sms-tel-cc" class="form-control">
+                {{ fraud_fraudlabsprosmsverification_countries }}
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-msg-otp-success"><span data-toggle="tooltip" title="{{ help_msg_otp_success }}">{{ entry_msg_otp_success }}</span></label>
+            <div class="col-sm-10">
+              <textarea name="fraud_fraudlabsprosmsverification_msg_otp_success" class="form-control" rows="4" cols="50">{{ fraud_fraudlabsprosmsverification_msg_otp_success }}</textarea>
+              {% if error_msg_otp_success %}
+                <div class="text-danger">{{ error_msg_otp_success }}</div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-msg-otp-fail"><span data-toggle="tooltip" title="{{ help_msg_otp_fail }}">{{ entry_msg_otp_fail }}</span></label>
+            <div class="col-sm-10">
+              <textarea name="fraud_fraudlabsprosmsverification_msg_otp_fail" class="form-control" rows="4" cols="50">{{ fraud_fraudlabsprosmsverification_msg_otp_fail }}</textarea>
+              {% if error_msg_otp_fail %}
+                <div class="text-danger">{{ error_msg_otp_fail }}</div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-msg-invalid-phone"><span data-toggle="tooltip" title="{{ help_msg_invalid_phone }}">{{ entry_msg_invalid_phone }}</span></label>
+            <div class="col-sm-10">
+              <textarea name="fraud_fraudlabsprosmsverification_msg_invalid_phone" class="form-control" rows="4" cols="50">{{ fraud_fraudlabsprosmsverification_msg_invalid_phone }}</textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-msg-invalid-otp"><span data-toggle="tooltip" title="{{ help_msg_invalid_otp }}">{{ entry_msg_invalid_otp }}</span></label>
+            <div class="col-sm-10">
+              <textarea name="fraud_fraudlabsprosmsverification_msg_invalid_otp" class="form-control" rows="4" cols="50">{{ fraud_fraudlabsprosmsverification_msg_invalid_otp }}</textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-debug-status"><span data-toggle="tooltip" title="{{ help_debug_status }}">{{ entry_debug_status }}</span></label>
+            <div class="col-sm-10">
+              <select name="fraud_fraudlabsprosmsverification_debug_status" id="input-debug-status" class="form-control">
+                {% if fraud_fraudlabsprosmsverification_debug_status %}
+                  <option value="1" selected="selected">{{ text_enabled }}</option>
+                  <option value="0">{{ text_disabled }}</option>
+                {% else %}
+                  <option value="1">{{ text_enabled }}</option>
+                  <option value="0" selected="selected">{{ text_disabled }}</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>
+          <fieldset>
+            <div class="form-group" style="padding-left:15px;">
+                <div>{{ text_information }}</div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{ footer }}

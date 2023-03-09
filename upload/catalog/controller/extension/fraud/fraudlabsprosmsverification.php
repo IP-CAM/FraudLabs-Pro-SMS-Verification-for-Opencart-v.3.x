@@ -16,7 +16,7 @@ class ControllerExtensionFraudFraudLabsProSmsVerification extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/home')
+			'href' => $this->url->link('common/home', '', true)
 		);
 
 		// Get "heading_title" from language file
@@ -261,7 +261,9 @@ class ControllerExtensionFraudFraudLabsProSmsVerification extends Controller {
 	private function randomCode($length=16) {
 		$key = '';
 		$pattern = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-		for($i=0; $i<$length; $i++) $key .= $pattern{rand(0, strlen($pattern)-1)};
+		for($i=0; $i<$length; $i++) {
+			$key .= $pattern[rand(0, strlen($pattern)-1)];
+		}
 		return $key;
 	}
 
